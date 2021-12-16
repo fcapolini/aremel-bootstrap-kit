@@ -1,0 +1,14 @@
+<lib
+	:k_tintColor="[[function(col,weight) {return __rt.mixColors(col, '#fff', weight);}]]"
+	:k_shadeColor="[[function(col,weight) {return __rt.mixColors(col, '#000', weight);}]]"
+	:k_shiftColor="[[function(col,weight) {return weight > 0 ? k_shadeColor(col,weight) : k_tintColor(col,-weight);}]]"
+>
+	<:import src="parts/_page.htm"/>
+	<:import src="parts/accordion.htm"/>
+	<:import src="parts/alert.htm"/>
+	<:import src="parts/badge.htm"/>
+	<:import src="parts/breadcrumb.htm"/>
+	<:import src="parts/button.htm"/>
+	<:import src="parts/card.htm"/>
+	<:import src="parts/carousel.htm"/>
+</lib>

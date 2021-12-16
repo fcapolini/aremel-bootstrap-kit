@@ -1,0 +1,31 @@
+<lib>
+	<:define tag="bs-carousel" class="carousel slide"
+		:selection=[[0]]
+
+		:carouselId=[[__id]]
+		id="carousel-[[carouselId]]"
+		data-bs-ride="carousel"
+		:event-slid.bs.carousel=[[(ev) => {
+			selection = ev.to;
+		}]]
+	>
+		<div class="carousel-inner">
+			<:slot name="default"/>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-slide="prev"
+				data-bs-target="#carousel-[[carouselId]]">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-slide="next"
+				data-bs-target="#carousel-[[carouselId]]">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</:define>
+
+	<:define tag="bs-carousel-item" class="carousel-item"
+		:itemIndex="[[__rt.elementIndex(__dom)]]"
+		:class-active=[[selection === itemIndex]]
+	/>
+</lib>

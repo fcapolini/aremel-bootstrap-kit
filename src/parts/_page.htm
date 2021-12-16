@@ -1,0 +1,119 @@
+<lib
+	:k_bs_blue="#0d6efd"
+	:k_bs_indigo="#6610f2"
+	:k_bs_purple="#6f42c1"
+	:k_bs_pink="#d63384"
+	:k_bs_red="#dc3545"
+	:k_bs_orange="#fd7e14"
+	:k_bs_yellow="#ffc107"
+	:k_bs_green="#198754"
+	:k_bs_teal="#20c997"
+	:k_bs_cyan="#0dcaf0"
+	:k_bs_white="#fff"
+	:k_bs_black="#000"
+	:k_bs_gray="#6c757d"
+	:k_bs_gray_dark="#343a40"
+	:k_bs_gray_100="#f8f9fa"
+	:k_bs_gray_200="#e9ecef"
+	:k_bs_gray_300="#dee2e6"
+	:k_bs_gray_400="#ced4da"
+	:k_bs_gray_500="#adb5bd"
+	:k_bs_gray_600="#6c757d"
+	:k_bs_gray_700="#495057"
+	:k_bs_gray_800="#343a40"
+	:k_bs_gray_900="#212529"
+
+	:k_bs_theme_colors="[[ [
+		{name:'primary', color:'#0d6efd'},
+		{name:'secondary', color:'#6c757d'},
+		{name:'success', color:'#198754'},
+		{name:'info', color:'#0dcaf0'},
+		{name:'warning', color:'#ffc107'},
+		{name:'danger', color:'#dc3545'},
+		{name:'light', color:'#f8f9fa'},
+		{name:'dark', color:'#212529'}
+	] ]]"
+
+	:k_bs_primary="#0d6efd"
+	:k_bs_secondary="#6c757d"
+	:k_bs_success="#198754"
+	:k_bs_info="#0dcaf0"
+	:k_bs_warning="#ffc107"
+	:k_bs_danger="#dc3545"
+	:k_bs_light="#f8f9fa"
+	:k_bs_dark="#212529"
+
+	:k_bs_body_color=[[k_bs_gray_900]]
+	:k_bs_body_bg=[[k_bs_white]]
+	:k_bs_font_sans_serif='system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
+	:k_bs_font_monospace='SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+	:k_bs_gradient='linear-gradient(180deg, rgba([[k_bs_white]], .15), rgba([[k_bs_white]], 0))'
+	:k_bs_body_font_size='1rem'
+	:k_bs_body_font_weight='400'
+	:k_bs_body_line_height='1.5'
+>
+	<!--- https://getbootstrap.com/docs/5.1/customize/css-variables/ -->
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="/.kit/bootstrap/res/bootstrap.min.css" rel="stylesheet"/>
+	<style data-name="page">
+		:root {
+			--bs-blue: [[k_bs_blue]];
+			--bs-indigo: [[k_bs_indigo]];
+			--bs-purple: [[k_bs_purple]];
+			--bs-pink: [[k_bs_pink]];
+			--bs-red: [[k_bs_red]];
+			--bs-orange: [[k_bs_orange]];
+			--bs-yellow: [[k_bs_yellow]];
+			--bs-green: [[k_bs_green]];
+			--bs-teal: [[k_bs_teal]];
+			--bs-cyan: [[k_bs_cyan]];
+			--bs-white: [[k_bs_white]];
+			--bs-gray: [[k_bs_gray]];
+			--bs-gray-dark: [[k_bs_gray_dark]];
+			--bs-gray-100: [[k_bs_gray_100]];
+			--bs-gray-200: [[k_bs_gray_200]];
+			--bs-gray-300: [[k_bs_gray_300]];
+			--bs-gray-400: [[k_bs_gray_400]];
+			--bs-gray-500: [[k_bs_gray_500]];
+			--bs-gray-600: [[k_bs_gray_600]];
+			--bs-gray-700: [[k_bs_gray_700]];
+			--bs-gray-800: [[k_bs_gray_800]];
+			--bs-gray-900: [[k_bs_gray_900]];
+			--bs-primary: [[k_bs_primary]];
+			--bs-secondary: [[k_bs_secondary]];
+			--bs-success: [[k_bs_success]];
+			--bs-info: [[k_bs_info]];
+			--bs-warning: [[k_bs_warning]];
+			--bs-danger: [[k_bs_danger]];
+			--bs-light: [[k_bs_light]];
+			--bs-dark: [[k_bs_dark]];
+			--bs-primary-rgb: [[__rt.rgb(k_bs_primary)]];
+			--bs-secondary-rgb: [[__rt.rgb(k_bs_secondary)]];
+			--bs-success-rgb: [[__rt.rgb(k_bs_success)]];
+			--bs-info-rgb: [[__rt.rgb(k_bs_info)]];
+			--bs-warning-rgb: [[__rt.rgb(k_bs_warning)]];
+			--bs-danger-rgb: [[__rt.rgb(k_bs_danger)]];
+			--bs-light-rgb: [[__rt.rgb(k_bs_light)]];
+			--bs-dark-rgb: [[__rt.rgb(k_bs_dark)]];
+			--bs-white-rgb: [[__rt.rgb(k_bs_white)]];
+			--bs-black-rgb: [[__rt.rgb(k_bs_black)]];
+			--bs-body-color-rgb: [[__rt.rgb(k_bs_body_color)]];
+			--bs-body-bg-rgb: [[__rt.rgb(k_bs_body_bg)]];
+			--bs-font-sans-serif: [[k_bs_font_sans_serif]];
+			--bs-font-monospace: [[k_bs_font_monospace]];
+			--bs-gradient: [[k_bs_gradient]];
+			--bs-body-font-family: var(--bs-font-sans-serif);
+			--bs-body-font-size: [[k_bs_body_font_size]];
+			--bs-body-font-weight: [[k_bs_body_font_weight]];
+			--bs-body-line-height: [[k_bs_body_line_height]];
+			--bs-body-color: [[k_bs_body_color]];
+			--bs-body-bg: [[k_bs_body_bg]];
+		}
+	</style>
+
+	<:define tag="bs-page">
+		<:slot name="default"/>
+		<script src="/.kit/bootstrap/res/bootstrap.bundle.min.js"></script>
+	</:define>
+</lib>

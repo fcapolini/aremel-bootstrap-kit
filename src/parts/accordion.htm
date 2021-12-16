@@ -1,0 +1,37 @@
+<lib>
+	<!--- https://getbootstrap.com/docs/5.1/components/accordion/ -->
+	<!--- https://getbootstrap.com/docs/5.1/components/collapse/ -->
+	<:define tag="bs-accordion" class="accordion"
+		:flush=[[false]]
+		:selection=[[0]]
+
+		:accordionId="[[__id]]"
+		id="accordion-[[accordionId]]"
+		:class-accordionFlush=[[flush]]
+	>
+	</:define>
+	<:define tag="bs-accordion-item" class="accordion-item"
+		:header=""
+
+		:itemId=[[__id]]
+		:itemIndex="[[__rt.elementIndex(__dom)]]"
+		:selected="[[selection === itemIndex]]"
+		:event-shown.bs.collapse="[[function() {
+			selection = itemIndex;
+		}]]"
+	>
+		<h2 class="accordion-header" id="heading-[[itemId]]">
+			<button class="accordion-button" :class-collapsed=[[!selected]] type="button" data-bs-toggle="collapse"
+				data-bs-target="#collapse-[[itemId]]" aria-expanded=[[selected]] aria-controls="collapse-[[itemId]]">
+				[[header]]<:slot name="header"/>
+			</button>
+		</h2>
+		<div id="collapse-[[itemId]]" class="accordion-collapse collapse" :class-show=[[selected]] aria-labelledby="heading-[[itemId]]"
+			data-bs-parent="#accordion-[[accordionId]]"
+		>
+			<div class="accordion-body">
+				<:slot name="default"/>
+			</div>
+		</div>
+	</:define>
+</lib>

@@ -1,0 +1,21 @@
+<lib>
+	<!--- https://getbootstrap.com/docs/5.1/components/buttons/ -->
+	<:define tag="bs-button:button"
+		:type="primary"
+		:disabled=[[false]]
+		:size=""
+		:outline=[[false]]
+		:nowrap=[[true]]
+
+		class="btn btn-[[outline ? 'outline-' : '']][[type]][[size ? ' btn-'+size : '']]"
+		:class-textNowrap=[[nowrap]]
+		disabled=[[disabled ? '' : null]]
+	></:define>
+	<!--- https://getbootstrap.com/docs/5.1/components/button-group/ -->
+	<:define tag="bs-buttongroup"
+		:vertical=[[false]]
+
+		role="group"
+		class="btn-group[[vertical ? '-vertical' : '']]"
+	></:define>
+</lib>

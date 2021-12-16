@@ -1,0 +1,13 @@
+<lib>
+	<!--- https://getbootstrap.com/docs/5.1/components/badge/ -->
+	<:define tag="bs-badge:span"
+		:type="primary"
+		:pill=[[false]]
+
+		:darkText=[[type=='warning' || type=='info' || type=='light']]
+		class="badge bg-[[type]]"
+		:class-roundedPill=[[pill]]
+		:class-textDark=[[darkText]]
+	>
+	</:define>
+</lib>
