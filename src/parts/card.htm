@@ -1,4 +1,7 @@
 <lib>
+	<:import src="_page.htm"/>
+
+	<!--- https://getbootstrap.com/docs/5.1/components/card/ -->
 	<style data-name="bs-card">
 		.bs-card-actions {
 			display: inline-flex;
@@ -12,7 +15,7 @@
 			margin-right: .5em;
 		}
 	</style>
-	<!--- https://getbootstrap.com/docs/5.1/components/card/ -->
+
 	<!--- align: ""|"start"|"center"|"end" -->
 	<:define tag="bs-card" class="card[[align ? ' text-' + align : '']]"
 		:align=""
@@ -38,5 +41,27 @@
 			<small :class-textMuted=[[mutedFooter]]>[[footer]]</small>
 		</div>
 	</:define>
+
 	<:define tag="bs-card-group" class="card-group"/>
+
+	<:define tag="bs-card-example" style="padding:0 1em">
+		<h5>Card</h5><p/>
+		<bs-card :title="Example" :footer="Last update: 5 mins ago">
+			<p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<bs-button>Go somewhere</bs-button>
+			<bs-button>Go somewhere else</bs-button>
+		</bs-card>
+		<p/>
+		<bs-card :title="Example" :footer="Last update: 5 mins ago"
+			:imgSrc="https://plchldr.co/i/500x250?bg=868e96"
+		>
+			<p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<a href="#">A link</a>
+			<a href="#">Another link</a>
+		</bs-card>
+		<p/>
+		<bs-card>
+			Some quick example text to build on the card title and make up the bulk of the card's content.
+		</bs-card>
+	</:define>
 </lib>

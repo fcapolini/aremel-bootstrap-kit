@@ -1,4 +1,6 @@
 <lib>
+	<:import src="_page.htm"/>
+
 	<!--- https://getbootstrap.com/docs/5.1/components/accordion/ -->
 	<!--- https://getbootstrap.com/docs/5.1/components/collapse/ -->
 	<:define tag="bs-accordion" class="accordion"
@@ -10,6 +12,7 @@
 		:class-accordionFlush=[[flush]]
 	>
 	</:define>
+
 	<:define tag="bs-accordion-item" class="accordion-item"
 		:header=""
 
@@ -33,5 +36,32 @@
 				<:slot name="default"/>
 			</div>
 		</div>
+	</:define>
+
+	<:define tag="bs-accordion-example" style="padding:0 1em">
+		<h5>Accordion</h5><p/>
+		<bs-accordion :flush=[[false]]>
+			<bs-accordion-item :header="Item #1">
+				<strong>This is the first item's accordion body.</strong> It is shown by default, until the
+				collapse plugin adds the appropriate classes that we use to style each element. These classes
+				control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+				modify any of this with custom CSS or overriding our default variables. It's also worth noting
+				that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+				does limit overflow.
+			</bs-accordion-item>
+
+			<bs-accordion-item :header="Item #2">
+				<bs-breadcrumb>
+					<bs-breadcrumb-item><a href="#">Cip</a></bs-breadcrumb-item>
+					<bs-breadcrumb-item><a href="#">Ciop</a></bs-breadcrumb-item>
+				</bs-breadcrumb>
+				<bs-button>Primary</bs-button>
+				<bs-buttongroup>
+					<bs-button>Primary</bs-button>
+					<bs-button>Primary</bs-button>
+					<bs-button>Primary</bs-button>
+				</bs-buttongroup>
+			</bs-accordion-item>
+		</bs-accordion>
 	</:define>
 </lib>

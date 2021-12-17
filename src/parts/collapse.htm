@@ -1,0 +1,27 @@
+<lib>
+	<:import src="_page.htm"/>
+	<:import src="button.htm"/>
+
+	<:define tag="bs-collapse" id="collapse" class="collapse"/>
+
+	<:define tag="bs-collapse-trigger:bs-button"
+		:targetId="collapse"
+		data-bs-toggle="collapse"
+		data-bs-target="#[[targetId]]"
+		aria-expanded="false"
+		aria-controls="[[targetId]]"
+	/>
+
+	<:define tag="bs-collapse-example" style="padding:0 1em">
+		<h5>Collapse</h5><p/>
+		<bs-collapse-trigger :targetId="collapseExample">
+			Toggle
+		</bs-collapse-trigger>
+		<bs-collapse id="collapseExample">
+			<p/>
+			<bs-card>
+				Hola
+			</bs-card>
+		</bs-collapse>
+	</:define>
+</lib>

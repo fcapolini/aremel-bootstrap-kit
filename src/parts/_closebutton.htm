@@ -1,0 +1,12 @@
+<lib>
+	<:import src="_page.htm"/>
+	<!--- https://getbootstrap.com/docs/5.1/components/close-button/ -->
+	<:define tag="bs-closebutton:button"
+			type="button" class="btn-close" aria-label="Close"
+			:disabled=[[false]]
+			:white=[[false]]
+
+			disabled=[[disabled ? '' : null]]
+			:class-btnCloseWhite=[[white]]
+	/>
+</lib>
