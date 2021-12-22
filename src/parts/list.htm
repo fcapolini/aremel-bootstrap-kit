@@ -39,7 +39,6 @@
 		:selected=[[false]]
 	>
 		<label style="width:100%">
-			<!--- FIXME: if 'radio'/'checkbox' below use '"' quotes we get a JS syntax error -->
 			<input class="form-check-input me-1"
 				type=[[radio ? "radio" : "checkbox"]]
 				value=[[selected ? 'true' : '']]/>
@@ -48,7 +47,7 @@
 	</:define>
 
 	<:define tag="bs-list-example" style="padding:1em 2em">
-		<h5 style="margin-bottom:1.5em">Card</h5>
+		<h5 style="margin-bottom:1.5em">List</h5>
 		<bs-list>
 			<bs-item :disabled=[[true]]>A disabled item</bs-item>
 			<bs-item :badge="1" :badgeType="danger">A second item</bs-item>
