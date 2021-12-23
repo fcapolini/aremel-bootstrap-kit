@@ -1,24 +1,57 @@
 <lib>
 	<!--- https://getbootstrap.com/docs/5.1/components/modal/ -->
+	<!--- size: sm|''|lg|xl -->
 	<:define tag="bs-modal" class="modal fade"
+			tabindex="-1" aria-labelledby=[[attr_id + '-label']] aria-hidden="true"
+
 			:aka="modal"
 			:title="Modal"
+			:size=''
 
-			id=[[aka]]
-			tabindex="-1" aria-labelledby=[[attr_id + '-label']] aria-hidden="true"
+			:show=[[function(callback, buttons, markup, title) {
+				var modal = bootstrap.Modal.getOrCreateInstance(__dom);
+				if (buttons) {
+					dialog.content.footer.__dom.innerHTML = '';
+					for (var i in buttons) {
+						_makeButton(i, buttons[i], modal, callback);
+					}
+				} else {
+					dialog.content.footer.__dom.classList.add('__aremel-autohide');
+				}
+				if (markup) {
+					dialog.content.body.__dom.innerHTML = markup;
+				}
+				if (title) {
+					__this.title = title;
+				}
+				modal.show();
+			}]]
+
+			:_makeButton=[[function(index, props, modal, callback) {
+				var b = document.createElement('button');
+				b.setAttribute('type', 'button');
+				var type = (props.type ? props.type : 'primary');
+				b.setAttribute('class', 'btn btn-' + type);
+				b.setAttribute('data-bs-dismiss', 'modal');
+				b.innerHTML = props.markup;
+				dialog.content.footer.__dom.appendChild(b);
+				if (callback) {
+					b.addEventListener('click', (_) => callback(index));
+				}
+			}]]
 	>
-		<div class="modal-dialog">
-		  <div class="modal-content">
+		<div :aka="dialog" class="modal-dialog[[size ? ' modal-' + size : '']]">
+		  <div :aka="content" class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id=[[attr_id + '-label']]>[[title]]</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<h5 class="modal-title">[[title]]</h5>
+				<button type="button" class="btn-close"
+						data-bs-dismiss="modal" aria-label="Close"/>
 			</div>
-			<div class="modal-body">
+			<div :aka="body" class="modal-body">
 				<:slot name="default"/>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+			<div :aka="footer" class="modal-footer">
+				<:slot name="footer"/>
 			</div>
 		  </div>
 		</div>
@@ -27,12 +60,18 @@
 	<:define tag="bs-modal-example" style="padding:1em 2em">
 		<h5 style="margin-bottom:1.5em">Accordion</h5>
 
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-			Launch demo modal
+		<button type="button" class="btn btn-primary"
+			:event-click=[[(_) => exampleModal.show(
+				(res) => console.log('modal result: ' + res),
+				[{markup:'Cancel', type:'secondary'}, {markup:'Save'}],
+				'Example <b>text</b>',
+				'Modal example'
+			)]]
+		>
+			Open modal
 		</button>
+		
 
-		<bs-modal :aka="exampleModal">
-			Modal body text goes here.
-		</bs-modal>
+		<bs-modal :aka="exampleModal" :size="sm"/>
 	</:define>
 </lib>
