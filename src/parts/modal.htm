@@ -1,4 +1,6 @@
 <lib>
+	<:import src="_page.htm"/>
+
 	<!--- https://getbootstrap.com/docs/5.1/components/modal/ -->
 	<!--- size: sm|''|lg|xl -->
 	<:define tag="bs-modal" class="modal fade"
@@ -58,7 +60,7 @@
 	</:define>
 
 	<:define tag="bs-modal-example" style="padding:1em 2em">
-		<h5 style="margin-bottom:1.5em">Accordion</h5>
+		<h5 style="margin-bottom:1.5em">Modal</h5>
 
 		<button type="button" class="btn btn-primary"
 			:event-click=[[(_) => exampleModal.show(

@@ -1,0 +1,51 @@
+<lib>
+	<:import src="_page.htm"/>
+
+	<!--- https://getbootstrap.com/docs/5.1/components/navs-tabs/ -->
+	<!--- align: ''|center|end -->
+	<!--- mode: ''|tabs|pills -->
+	<!--- layout: ''|fill|justified -->
+	<:define tag="bs-nav:ul" class="nav[[
+			(align ? ' justify-content-' + align : '') +
+			(mode ? ' nav-' + mode : '') +
+			(layout ? ' nav-' + layout : '')
+		]]"
+		:class-flexColumn=[[vertical]]
+		
+		:selection=[[0]]
+		:align=""
+		:vertical=[[false]]
+		:mode=""
+		:layout=""
+	>
+	</:define>
+
+	<:define tag="bs-nav-item:li" class="nav-item"
+		:text=""
+		:link=[[null]]
+		:disabled=[[false]]
+
+		:itemIndex=[[__rt.elementIndex(__dom)]]
+		:selected=[[selection === itemIndex]]
+	>
+		<a class="nav-link" href=[[link]]
+			:class-active=[[selected]]
+			:class-disabled=[[disabled]]
+			:on-selected=[[
+				if (selected) __dom.setAttribute('aria-current', 'page');
+				else __dom.removeAttribute('aria-current');
+			]]
+		>[[text]]</a>
+	</:define>
+
+	<:define tag="bs-nav-example" style="padding:1em 2em">
+		<h5 style="margin-bottom:1.5em">Nav</h5>
+
+		<bs-nav :mode="tabs" :selection=[[0]]>
+			<bs-nav-item :text="Active" :link="#"/>
+			<bs-nav-item :text="Link" :link="#"/>
+			<bs-nav-item :text="Link" :link="#"/>
+			<bs-nav-item :text="Disabled" :link="#" :disabled=[[true]]/>
+		</bs-nav>
+	</:define>
+</lib>
