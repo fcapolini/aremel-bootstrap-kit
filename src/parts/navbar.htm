@@ -1,0 +1,64 @@
+<lib>
+	<:import src="_page.htm" />
+	<:import src="dropdown.htm" />
+	<:import src="nav.htm" />
+
+	<:define tag="bs-navbar:nav"
+		class="navbar navbar-expand-[[breakpoint]] navbar-[[dark ? 'dark' : 'light']] bg-[[dark ? 'dark' : 'light']]"
+		:navbarId="navbar-[[__id]]"
+
+		:selection=[[0]]
+		:breakpoint="md"
+		:dark=[[false]]
+	>
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><:slot name="brand"/></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#[[navbarId]]" aria-controls=[[navbarId]] aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id=[[navbarId]]>
+				<ul class="navbar-nav me-auto mb-2 mb-[[breakpoint]]-0">
+					<:slot name="default"/>
+				</ul>
+				<:slot name="extra"/>
+			</div>
+		</div>
+	</:define>
+
+	<:define tag="bs-navbar-search:form" class="d-flex">
+		<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+		<button class="btn btn-primary" type="submit">Search</button>
+	</:define>
+
+	<:define tag="bs-navbar-dropdown:li" class="nav-item dropdown"
+			:dropdownId="dropdown-[[__id]]"
+
+			:label="Dropdown"
+	>
+		<a class="nav-link dropdown-toggle" href="#" id=[[dropdownId]] role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			[[label]]
+		</a>
+		<ul class="dropdown-menu" aria-labelledby=[[dropdownId]]
+				:class-dropdownMenuDark=[[dark]]
+		>
+			<:slot name="default"/>
+		</ul>
+	</:define>
+
+	<:define tag="bs-navbar-example" style="padding:1em 2em">
+		<h5 style="margin-bottom:1.5em">Navbar</h5>
+
+		<bs-navbar :breakpoint="sm" :dark=[[false]]>
+			<span :slot="brand">Example</span>
+			<bs-nav-item :text="Home"/>
+			<bs-nav-item :text="Link"/>
+			<bs-navbar-dropdown>
+				<bs-dropdown-item :label="Item 1"/>
+				<bs-dropdown-item :label="Item 2"/>
+			</bs-navbar-dropdown>
+			<bs-navbar-search :slot="extra"/>
+		</bs-navbar>
+	</:define>
+</lib>
