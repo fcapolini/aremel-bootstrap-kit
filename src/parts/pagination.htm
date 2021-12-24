@@ -1,0 +1,45 @@
+<lib>
+	<!--- https://getbootstrap.com/docs/5.1/components/pagination/ -->
+	<:define tag="bs-pagination:nav" aria-label="Pagination"
+			:selection=[[0]]
+			:total=[[2]]
+			:length=[[5]]
+			:data=[[ [] ]]
+			:on-total=[[
+				var p = [];
+				for (var i = 0; i < total; i++) {
+					p.push({index:i, link:null});
+				}
+				data = {pages:p};
+			]]
+	>
+		<ul class="pagination">
+			<li class="page-item" :class-disabled=[[selection < 1]]>
+				<a class="page-link" href="#">Previous</a>
+			</li>
+			<li class="page-item" :data=[[data.pages]] :dataLength=[[length]]
+				:dataOffset=[[
+					var i = (selection + 1) - length / 2;
+					Math.max(0, Math.min(total - length, i));
+				]]
+				:class-active=[[data.index === selection]]
+			>
+				<a class="page-link" href=[[data.link]]>[[data.index + 1]]</a>
+			</li>
+			<li class="page-item" :class-disabled=[[selection >= (total - 1)]]>
+				<a class="page-link" href="#">Next</a>
+			</li>
+		</ul>
+	</:define>
+
+	<:define tag="bs-pagination-example" style="padding:1em 2em">
+		<h5 style="margin-bottom:1.5em">Pagination</h5>
+
+		<bs-pagination :total=[[10]] :length=[[5]] :selection=[[0]]
+			:on-selection=[[
+				//console.log(selection);
+				setTimeout(() => selection = (selection + 1) % total, 1000);
+			]]
+		/>
+	</:define>
+</lib>
