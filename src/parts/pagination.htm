@@ -36,9 +36,13 @@
 		<h5 style="margin-bottom:1.5em">Pagination</h5>
 
 		<bs-pagination :total=[[10]] :length=[[5]] :selection=[[0]]
+			:step=[[1]]
 			:on-selection=[[
-				//console.log(selection);
-				setTimeout(() => selection = (selection + 1) % total, 1000);
+				setTimeout(() => {
+					if (selection >= (total - 1)) step = -1;
+					if (selection < 1) step = 1;
+					selection += step;
+				}, 500);
 			]]
 		/>
 	</:define>
