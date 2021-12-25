@@ -1,0 +1,46 @@
+<lib>
+	<!--- https://ace.c9.io/#nav=embedding -->
+	<!--- TODO: https://ace.c9.io/#nav=higlighter&api=ace -->
+	<:import src="../parts/_page.htm"/>
+	<script src="/.kit/bootstrap/res/ace-editor/src-min-noconflict/ace.js"></script>
+	<style type="text/css" media="screen">
+		.ace-editor { 
+			width: 100%;
+			font-size: .85em;
+			line-height: 1.6em;
+		}
+	</style>
+
+	<:define tag="ace-editor" :editorid="editor"
+			:theme="ace/theme/chrome"
+			:mode="ace/mode/html"
+			:maxLines=[[100]]
+			:wrap=[[false]]
+			:readonly=[[false]]
+			:lineHighlight=[[false]]
+			:hPadding=[[0]]
+	>
+		<div id="[[editorid]]" class="ace-editor"><:slot name="default"/></div>
+		<script>
+			var editor = ace.edit("[[editorid]]", {
+				theme: "[[theme]]",
+		        mode: "[[mode]]",
+				maxLines: [[maxLines]],
+				wrap: [[wrap]],
+				autoScrollEditorIntoView: true,
+				// showLineNumbers: false,
+				// showFoldWidgets: false,
+				showGutter: false,
+				showPrintMargin: false,
+				/* https://github.com/ajaxorg/ace/issues/266 */
+				readOnly: [[readonly]],
+				highlightActiveLine: [[!readonly && lineHighlight]],
+				highlightGutterLine: [[!readonly && lineHighlight]]
+			});
+			editor.renderer.$cursorLayer.element.style.opacity=[[readonly ? 0 : 1]];
+			// https://ace.c9.io/api/virtual_renderer.html#VirtualRenderer.setPadding
+			editor.renderer.setPadding([[hPadding]]);
+		</script>
+	</:define>
+	
+</lib>
