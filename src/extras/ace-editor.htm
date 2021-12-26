@@ -19,28 +19,33 @@
 			:readonly=[[false]]
 			:lineHighlight=[[false]]
 			:hPadding=[[0]]
+			:setValue=[[(v) => {
+				_aceEditor.setValue(v);
+				_aceEditor.clearSelection();
+			}]]
+			:_aceEditor=[[
+				var ret = window.ace.edit(editorid, {
+					theme: theme,
+					mode: mode,
+					maxLines: maxLines,
+					wrap: wrap,
+					autoScrollEditorIntoView: true,
+					// showLineNumbers: false,
+					// showFoldWidgets: false,
+					showGutter: false,
+					showPrintMargin: false,
+					/* https://github.com/ajaxorg/ace/issues/266 */
+					readOnly: readonly,
+					highlightActiveLine: !readonly && lineHighlight,
+					highlightGutterLine: !readonly && lineHighlight
+				});
+				ret.renderer.$cursorLayer.element.style.opacity=(readonly ? 0 : 1);
+				// https://ace.c9.io/api/virtual_renderer.html#VirtualRenderer.setPadding
+				ret.renderer.setPadding(hPadding);
+				ret;
+			]]
 	>
 		<div id="[[editorid]]" class="ace-editor"><:slot name="default"/></div>
-		<script>
-			var editor = ace.edit("[[editorid]]", {
-				theme: "[[theme]]",
-		        mode: "[[mode]]",
-				maxLines: [[maxLines]],
-				wrap: [[wrap]],
-				autoScrollEditorIntoView: true,
-				// showLineNumbers: false,
-				// showFoldWidgets: false,
-				showGutter: false,
-				showPrintMargin: false,
-				/* https://github.com/ajaxorg/ace/issues/266 */
-				readOnly: [[readonly]],
-				highlightActiveLine: [[!readonly && lineHighlight]],
-				highlightGutterLine: [[!readonly && lineHighlight]]
-			});
-			editor.renderer.$cursorLayer.element.style.opacity=[[readonly ? 0 : 1]];
-			// https://ace.c9.io/api/virtual_renderer.html#VirtualRenderer.setPadding
-			editor.renderer.setPadding([[hPadding]]);
-		</script>
 	</:define>
 	
 </lib>
