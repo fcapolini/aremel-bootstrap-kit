@@ -1,0 +1,29 @@
+<lib>
+    <:import src="../parts/_page.htm"/>
+    <!--- https://github.com/showdownjs/showdown -->
+	<script src="/.kit/bootstrap/res/showdown/showdown.min.js"></script>
+	<style type="text/css" media="screen">
+        .showdown-div {
+            font-size: .97em;
+        }
+        .showdown-div p {
+            margin-bottom: .6em;
+        }
+        .showdown-div pre {
+            font-size: .8em;
+        }
+        .showdown-div pre {
+            border: 1px solid #ddd;
+            padding: .3em .75em;
+            border-radius: 3px;
+        }
+	</style>
+    <:define tag="showdown-div" class="showdown-div"
+            
+            :text=""
+            
+            :on-text=[[
+                __dom.innerHTML = new showdown.Converter().makeHtml(text);
+            ]]
+    />
+</lib>
