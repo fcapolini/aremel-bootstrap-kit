@@ -12,27 +12,43 @@
 	</style>
 
 	<:define tag="ace-editor" :editorid="editor"
-			:theme="ace/theme/chrome"
+			:theme="chrome"
 			:mode="ace/mode/html"
 			:maxLines=[[100]]
 			:wrap=[[false]]
 			:readonly=[[false]]
 			:lineHighlight=[[false]]
+			:showGutter=[[false]]
+			:showLineNumbers=[[false]]
+			:showFoldWidgets=[[false]]
 			:hPadding=[[0]]
+
+			:hasFocus=[[false]]
+
 			:setValue=[[(v) => {
 				_aceEditor.setValue(v);
 				_aceEditor.clearSelection();
+				_aceEditor.getSession().getUndoManager().reset();
 			}]]
+
+			:getValue=[[() => _aceEditor.getValue()]]
+
+			:addCommand=[[(params) => _aceEditor.commands.addCommand(params)]]
+
 			:_aceEditor=[[
 				var ret = window.ace.edit(editorid, {
-					theme: theme,
+					// https://codepen.io/zymawy/pen/XwbxoJ
+					dragEnabled: false,
+					tabSize: 2,
+
+					theme: 'ace/theme/' + theme,
 					mode: mode,
 					maxLines: maxLines,
 					wrap: wrap,
 					autoScrollEditorIntoView: true,
-					// showLineNumbers: false,
-					// showFoldWidgets: false,
-					showGutter: false,
+					showLineNumbers: showLineNumbers,
+					showFoldWidgets: showFoldWidgets,
+					showGutter: showGutter,
 					showPrintMargin: false,
 					/* https://github.com/ajaxorg/ace/issues/266 */
 					readOnly: readonly,
@@ -42,6 +58,8 @@
 				ret.renderer.$cursorLayer.element.style.opacity=(readonly ? 0 : 1);
 				// https://ace.c9.io/api/virtual_renderer.html#VirtualRenderer.setPadding
 				ret.renderer.setPadding(hPadding);
+				ret.on('focus', () => hasFocus = true);
+				ret.on('blur', () => hasFocus = false);
 				ret;
 			]]
 	>

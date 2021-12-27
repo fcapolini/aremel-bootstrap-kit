@@ -13,9 +13,10 @@
 		:breakpoint="md"
 		:size=""
 		:dark=[[false]]
+		:brandLink=""
 	>
 		<div class="container[[size ? '-' + size : '']]">
-			<a class="navbar-brand" href="#"><:slot name="brand"/></a>
+			<a class="navbar-brand" href=[[brandLink]]><:slot name="brand"/></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#[[navbarId]]" aria-controls=[[navbarId]] aria-expanded="false"
 				aria-label="Toggle navigation">

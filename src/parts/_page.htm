@@ -112,7 +112,15 @@
 		}
 	</style>
 
-	<:define tag="bs-page">
+	<:define tag="bs-page"
+		:pageCommandKey=[[
+			var ret = 'CTRL';
+			try {
+				if (navigator.userAgent.indexOf('Mac OS X') >= 0) ret = 'CMD';
+			} catch (ex) {}
+			ret;
+		]]
+	>
 		<:slot name="default"/>
 		<script src="/.kit/bootstrap/res/bootstrap/bootstrap.bundle.min.js"></script>
 	</:define>
