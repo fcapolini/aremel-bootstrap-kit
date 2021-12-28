@@ -1,10 +1,9 @@
 <lib>
-    <:import src="../parts/_page.htm"/>
     <!--- https://github.com/showdownjs/showdown -->
 	<script src="/.kit/bootstrap/res/showdown/showdown.min.js"></script>
 	<style type="text/css" media="screen">
         .showdown-div {
-            font-size: .97em;
+            font-size: 1em;
         }
         .showdown-div p {
             margin-bottom: .6em;
@@ -18,12 +17,9 @@
             border-radius: 3px;
         }
 	</style>
-    <:define tag="showdown-div" class="showdown-div"
-            
-            :text=""
-            
+    <:define tag="showdown-div" class="showdown-div" :text=""
             :on-text=[[
-                __dom.innerHTML = new showdown.Converter().makeHtml(text);
+                __dom.innerHTML = new __scope_0.__win.showdown.Converter().makeHtml(text);
             ]]
     />
 </lib>
