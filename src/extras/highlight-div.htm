@@ -1,0 +1,32 @@
+<lib>
+    <:import src="markdown-div.htm"/>
+    <!--- https://highlightjs.org -->
+    <link rel="stylesheet" href="/.kit/bootstrap/res/highlightjs/styles/github.min.css">
+	<script src="/.kit/bootstrap/res/highlightjs/highlight.min.js"></script>
+    <:define tag="highlight-div" class="markdown-div highlight-div" :text=""
+            :on-text=[[
+                var s = new __scope_0.__win.showdown.Converter().makeHtml(text);
+                s = highlight(s);
+                __dom.innerHTML = s;
+            ]]
+            :highlight=[[(s) => {
+                return __scope_0.__win.aremelEregMap(
+                        s,
+                        '<pre><code(.*?)>(.*?)<\\/code><\\/pre>',
+                        (re) => {
+                    var code = re.group(2);
+                    var klass = re.group(1);
+                    var i1 = klass.indexOf('"');
+                    var i2 = (i1 > 0 ? klass.indexOf(' ', i1) : -1);
+                    if (i2 > 0) {
+                        var lang = klass.substring(i1 + 1, i2);
+                        code = __scope_0.__win.hljs.highlight(code, {language: lang}).value;
+                    } else {
+                        code = __scope_0.__win.hljs.highlightAuto(code).value;
+                    }
+                    return `<pre><code${klass}>${code}</code></pre>`;
+                })
+            }]]
+    />
+
+</lib>
