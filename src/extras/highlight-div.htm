@@ -6,6 +6,7 @@
     <:define tag="highlight-div" class="markdown-div highlight-div" :text=""
             :on-text=[[
                 var s = new __scope_0.__win.showdown.Converter().makeHtml(text);
+                s = s.split('a href').join('a target="_top" href');
                 s = highlight(s);
                 __dom.innerHTML = s;
             ]]

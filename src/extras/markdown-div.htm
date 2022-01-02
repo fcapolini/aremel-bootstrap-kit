@@ -24,7 +24,9 @@
 	</style>
     <:define tag="markdown-div" class="markdown-div" :text=""
             :on-text=[[
-                __dom.innerHTML = new __scope_0.__win.showdown.Converter().makeHtml(text);
+                var s = new __scope_0.__win.showdown.Converter().makeHtml(text);
+                s = s.split('a href').join('a target="_top" href');
+                __dom.innerHTML = s;
             ]]
     />
 </lib>
