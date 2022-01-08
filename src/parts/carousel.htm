@@ -29,6 +29,7 @@
 
 	<:define tag="bs-carousel-item" class="carousel-item"
 		:itemIndex="[[__rt.elementIndex(__dom)]]"
+		:on-data=[[itemIndex = __rt.elementIndex(__dom)]]
 		:class-active=[[selection === itemIndex]]
 	/>
 

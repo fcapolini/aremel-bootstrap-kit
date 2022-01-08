@@ -50,6 +50,7 @@
 	<:define tag="bs-navbar-dropdown:li" class="nav-item dropdown"
 			:dropdownId="dropdown-[[__id]]"
 			:itemIndex=[[__rt.elementIndex(__dom)]]
+			:on-data=[[itemIndex = __rt.elementIndex(__dom)]]
 			:selected=[[selection === itemIndex]]
 	
 			:label="Dropdown"

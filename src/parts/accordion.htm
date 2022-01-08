@@ -18,6 +18,7 @@
 
 		:itemId=[[__id]]
 		:itemIndex="[[__rt.elementIndex(__dom)]]"
+		:on-data=[[itemIndex = __rt.elementIndex(__dom)]]
 		:selected="[[selection === itemIndex]]"
 		:event-shown.bs.collapse="[[function() {
 			selection = itemIndex;
